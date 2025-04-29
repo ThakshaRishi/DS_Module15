@@ -1,14 +1,23 @@
 # Ex12 Binary Search Tree
-## DATE:
+## DATE: 06.03.2025
 ## AIM:
 To write a C function to insert the elements in the binary search tree
 
 ## Algorithm
-1. 
-2. 
-3. 
-4.  
-5.   
+
+1. Start with the root node.
+
+2. If the tree is empty, create a new node as the root.
+
+3. Else, compare the value to be inserted with the current node:
+
+    -If it is smaller, recursively insert in the left subtree.
+
+    -If it is greater, recursively insert in the right subtree.
+
+4. Repeat until the correct position is found.
+
+5. Insert the new node at that position. 
 
 ## Program:
 ```
