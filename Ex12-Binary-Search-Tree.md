@@ -14,13 +14,76 @@ To write a C function to insert the elements in the binary search tree
 ```
 /*
 Program to insert the elements in the binary search tree
-Developed by: 
-RegisterNumber:  
+Developed by: Thaksha Rishi
+RegisterNumber: 212223100058
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Definition of the binary search tree node
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+// Function to create a new node
+struct Node* createNode(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+// Function to insert an element into the BST
+struct Node* insert(struct Node* root, int value) {
+    if (root == NULL) {
+        return createNode(value);
+    }
+
+    if (value < root->data) {
+        root->left = insert(root->left, value);
+    } else if (value > root->data) {
+        root->right = insert(root->right, value);
+    }
+
+    return root;
+}
+
+// In-order traversal to display the tree contents
+void inOrderTraversal(struct Node* root) {
+    if (root == NULL)
+        return;
+    inOrderTraversal(root->left);
+    printf("%d ", root->data);
+    inOrderTraversal(root->right);
+}
+
+int main() {
+    struct Node* root = NULL;
+
+    // Insert elements
+    root = insert(root, 50);
+    insert(root, 30);
+    insert(root, 70);
+    insert(root, 20);
+    insert(root, 40);
+    insert(root, 60);
+    insert(root, 80);
+
+    printf("Inorder traversal of the BST:\n");
+    inOrderTraversal(root);
+
+    return 0;
+}
+
 ```
 
 ## Output:
 
+![image](https://github.com/user-attachments/assets/4e78c983-9394-4fad-b02a-32b1b88a78de)
 
 
 ## Result:
