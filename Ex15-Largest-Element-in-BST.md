@@ -4,14 +4,10 @@
 To Write a c program to find the largest value in a Binary Search Tree.
 
 ## Algorithm
-1. Start from the root: Begin from the root node of the BST.
-
-2. Traverse right: In a BST, the largest element is always located at the rightmost node.
-
-3. Iterate until the rightmost node: Keep moving to the right child node until a node does not have a right child.
-
-4. Return the rightmost node: The node that doesn’t have a right child will contain the largest value in the tree. 
-
+1. Initialize a pointer to the root of the BST.
+2. Move to the right child in a loop while it exists.
+3. Stop when the right child is NULL.
+4. Return the current node’s value as the largest.
 ## Program:
 ```
 /*
@@ -19,62 +15,63 @@ Program to find and display the priority of the operator in the given Postfix ex
 Developed by: Thaksha Rishi
 RegisterNumber:  212223100058
 */
-#include <stdio.h>
-#include <stdlib.h>
-
-// Define structure for a node
-struct Node {
-    int data;
-    struct Node* left;
-    struct Node* right;
-};
-
-// Function to create a new node
-struct Node* newNode(int data) {
-    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
-    node->data = data;
-    node->left = node->right = NULL;
-    return node;
+#include <stdio.h> 
+#include <stdlib.h> 
+struct node 
+{ 
+   int info; 
+   struct node *left, *right; 
+}; 
+struct node *createnode(int key) 
+{ 
+   struct node *newnode = (struct node*)malloc(sizeof(struct node)); 
+   newnode->info = key; 
+   newnode->left = NULL; 
+   newnode->right = NULL; 
+   return(newnode); 
+} 
+void inorder(struct node *root) 
+{ 
+   if(root != NULL) 
+   { 
+       inorder(root->left); 
+       printf(" %d ",root->info); 
+       inorder(root->right); 
+   } 
+} 
+void largest(struct node *root) 
+{ 
+   while (root != NULL && root->right != NULL) 
+   { 
+       root = root->right; 
+   } 
+   printf("\nLargest value is %d", root->info); 
 }
-
-// Function to find the largest element in a BST
-int findLargest(struct Node* root) {
-    if (root == NULL) {
-        return -1; // Return -1 if tree is empty
-    }
-    // Traverse to the rightmost node
-    while (root->right != NULL) {
-        root = root->right;
-    }
-    return root->data; // Return the data of the rightmost node
+/* 
+ * Main Function 
+ */ 
+int main() 
+{ 
+  /* Creating first Tree. */ 
+   struct node *newnode = createnode(25); 
+   newnode->left = createnode(17); 
+   newnode->right = createnode(35); 
+   newnode->left->left = createnode(13); 
+   newnode->left->right = createnode(19); 
+   newnode->right->left = createnode(27); 
+   newnode->right->right = createnode(55); 
+    
+   printf("Inorder traversal of tree 1 :"); 
+   inorder(newnode); 
+   largest(newnode); 
+    
+return 0; 
 }
-
-int main() {
-    // Create a sample BST
-    struct Node* root = newNode(50);
-    root->left = newNode(30);
-    root->right = newNode(70);
-    root->left->left = newNode(20);
-    root->left->right = newNode(40);
-    root->right->left = newNode(60);
-    root->right->right = newNode(80);
-
-    // Find and display the largest value in the BST
-    int largest = findLargest(root);
-    if (largest != -1) {
-        printf("The largest value in the BST is: %d\n", largest);
-    } else {
-        printf("The BST is empty.\n");
-    }
-
-    return 0;
-}
-
 ```
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/1e81b6ad-7fbd-4ba3-ba0a-8445c23ccc31)
+![image](https://github.com/user-attachments/assets/48608535-2ba3-44fd-b2c1-5c75391a1d80)
 
 
 ## Result:
