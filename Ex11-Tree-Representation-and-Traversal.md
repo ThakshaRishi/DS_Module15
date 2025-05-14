@@ -5,16 +5,13 @@ To write a C function to perform post order traversal of a binary tree.
 
 ## Algorithm
 
-1. Start from the root node.
-
-2. Recursively traverse the left subtree.
-
-3. Recursively traverse the right subtree.
-
-4. Visit (process/print) the root node.
-
-5. Repeat the above steps until all nodes are visited.  
-
+1. Start
+2. Define a function display_postorder() that takes a pointer to the root node of the tree.
+3. Check if the current node (root_node) is not null.
+4. Recursively call display_postorder() for the left child of the current node.
+5. Recursively call display_postorder() for the right child of the current node.
+6. After visiting both children, print the value of the current node.
+7. End
 ## Program:
 ```
 /*
@@ -22,51 +19,25 @@ Program to perform post order traversal of a binary tree.
 Developed by: Thaksha Rishi
 RegisterNumber: 212223100058
 */
-
-#include <stdio.h>
-#include <stdlib.h>
-
-struct Node {
-    int data;
-    struct Node* left;
-    struct Node* right;
-};
-
-struct Node* createNode(int value) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = value;
-    newNode->left = NULL;
-    newNode->right = NULL;
-    return newNode;
-}
-
-void postOrderTraversal(struct Node* root) {
-    if (root == NULL)
-        return;
-    
-    postOrderTraversal(root->left);    
-    postOrderTraversal(root->right);   
-    printf("%d ", root->data);         
-}
-
-int main() {
-    struct Node* root = createNode(1);
-    root->left = createNode(2);
-    root->right = createNode(3);
-    root->left->left = createNode(4);
-    root->left->right = createNode(5);
-
-    printf("Postorder traversal of the binary tree:\n");
-    postOrderTraversal(root);
-
-    return 0;
-}
+/*struct node 
+{ 
+int value; 
+struct node *left_child, *right_child; 
+};*/ 
+void display_postorder(struct node *root_node) { 
+if(root_node) 
+{ 
+display_postorder(root_node->left_child); 
+display_postorder(root_node->right_child); 
+printf("%d\n",root_node->value); 
+} 
+} 
 
 ```
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/7bf72162-745c-492d-8f5f-fec07919adde)
+![image](https://github.com/user-attachments/assets/b0dcda69-e807-4fa6-a53f-fab75f1c006b)
 
 
 ## Result:
